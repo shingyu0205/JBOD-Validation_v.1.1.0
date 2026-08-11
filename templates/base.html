@@ -1,94 +1,185 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
 <head>
 
+    <!-- =====================================================
+         Basic Information
+         基本網頁資訊
+         ===================================================== -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         {% block title %}
-        JBOD Validation Platform
+            JBOD Validation Platform
         {% endblock %}
     </title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- =====================================================
+         Bootstrap 5
+         ===================================================== -->
 
-    <!-- Project CSS -->
-    <link rel="stylesheet"
-          href="{% static 'css/style.css' %}">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         Font Awesome
+         ===================================================== -->
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         JBOD Validation Platform CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/variables.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/common.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+
+    <!-- =====================================================
+         Page Specific CSS
+         頁面專用 CSS
+         ===================================================== -->
 
     {% block extra_css %}
     {% endblock %}
 
-
-    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/common.css' %}">
 </head>
+
 
 <body>
 
-<div class="container-fluid">
 
-    <div class="row">
+<!-- =========================================================
+     Login Page
+     登入頁面
+     
+     Login 頁面不顯示 Sidebar / Navbar
+     ========================================================= -->
 
-        <!-- Sidebar -->
+{% if request.path == "/login/" %}
+
+    <main class="login-page">
+
+{% else %}
+
+
+    <!-- =====================================================
+         Application Layout
+         系統主要 Layout
+         ===================================================== -->
+
+    <div class="d-flex">
+
+
+        <!-- =================================================
+             Sidebar
+             左側快捷列
+             ================================================= -->
+
         {% include "includes/sidebar.html" %}
 
-        <!-- Main Content -->
-        <div class="col p-0 d-flex flex-column min-vh-100">
 
-            <!-- Navbar -->
+        <!-- =================================================
+             Main Application Area
+             主要內容區域
+             ================================================= -->
+
+        <div class="flex-grow-1">
+
+
+            <!-- =============================================
+                 Navbar
+                 上方導覽列
+                 ============================================= -->
+
             {% include "includes/navbar.html" %}
 
-            <!-- Page Content -->
-            <main class="container-fluid flex-grow-1 py-4 px-4">
 
-                <!-- Django Messages -->
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
-                             role="alert">
+            <!-- =============================================
+                 Main Content Container
+                 ============================================= -->
 
-                            {{ message }}
+            <main class="main-content p-4">
 
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="alert"
-                                aria-label="Close">
-                            </button>
+{% endif %}
 
-                        </div>
-                    {% endfor %}
-                {% endif %}
 
-                {% block content %}
-                {% endblock %}
+<!-- =========================================================
+     Main Content Block
+     
+     ⚠️ 整個 base.html 只能有一個 content block
+     ========================================================= -->
+
+{% block content %}
+{% endblock %}
+
+
+<!-- =========================================================
+     Close Layout
+     關閉頁面 Layout
+     ========================================================= -->
+
+{% if request.path == "/login/" %}
+
+    </main>
+
+{% else %}
 
             </main>
-
-            <!-- Footer -->
-            {% include "includes/footer.html" %}
 
         </div>
 
     </div>
 
-</div>
+{% endif %}
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- =========================================================
+     Bootstrap JavaScript
+     ========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+     Page Specific JavaScript
+     頁面專用 JavaScript
+     ========================================================= -->
 
 {% block extra_js %}
 {% endblock %}
+
 
 </body>
 

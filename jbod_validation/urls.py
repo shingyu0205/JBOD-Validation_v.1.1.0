@@ -1,32 +1,110 @@
+"""
+jbod_validation/urls.py
+
+JBOD Validation Platform
+Project URL Configuration
+"""
+
 from django.contrib import admin
-from django.urls import path, include
+from django.contrib.auth import views as auth_views
+
+from django.urls import (
+    include,
+    path,
+)
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
 
-    # Login / Logout
-    path("", include("user.urls")),
+    # =========================================================
+    # Django Administration
+    # =========================================================
 
+    path(
+        "admin/",
+        admin.site.urls,
+    ),
+
+
+    # =========================================================
+    # Authentication
+    # 登入 / 登出
+    # =========================================================
+
+    path(
+        "logout/",
+        auth_views.LogoutView.as_view(),
+        name="logout",
+    ),
+
+
+    # =========================================================
     # Dashboard
-    path("", include("dashboard.urls")),
+    # =========================================================
 
-    # Model
-    path("model/", include("models_app.urls")),
+    path(
+        "",
+        include("dashboard.urls"),
+    ),
 
-    # 保留 Django 內建 Authentication
-    path("accounts/", include("django.contrib.auth.urls")),
 
+    # =========================================================
+    # Models
+    # =========================================================
+
+    path(
+        "models/",
+        include("models_app.urls"),
+    ),
+
+
+    # =========================================================
     # Firmware
-    path("firmware/", include("firmware.urls")),
+    # =========================================================
 
-    # TestCase
-    path("testcase/", include("testcase.urls")),
+    path(
+        "firmware/",
+        include("firmware.urls"),
+    ),
 
-    # TestPlan
-    path("testplan/", include("testplan.urls")),
 
+    # =========================================================
+    # Test Cases
+    # =========================================================
+
+    path(
+        "testcase/",
+        include("testcase.urls"),
+    ),
+
+
+    # =========================================================
+    # Test Plans
+    # =========================================================
+
+    path(
+        "testplan/",
+        include("testplan.urls"),
+    ),
+
+
+    # =========================================================
     # Validation
-    path("validation/", include("validation.urls")),
+    # =========================================================
 
-    path("executor/", include("executor.urls")),
+    path(
+        "validation/",
+        include("validation.urls"),
+    ),
+
+
+    # =========================================================
+    # Executor
+    # =========================================================
+
+    path(
+        "executor/",
+        include("executor.urls"),
+    ),
+
 ]

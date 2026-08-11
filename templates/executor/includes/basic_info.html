@@ -1,5 +1,9 @@
 <div class="card shadow-sm h-100">
 
+    <!-- ================================================= -->
+    <!-- Header -->
+    <!-- ================================================= -->
+
     <div class="card-header">
 
         <strong>
@@ -12,145 +16,165 @@
 
     </div>
 
+
+    <!-- ================================================= -->
+    <!-- Body -->
+    <!-- ================================================= -->
+
     <div class="card-body">
 
-        <table class="table table-borderless align-middle mb-0">
+        <!-- ============================================= -->
+        <!-- Execute Job -->
+        <!-- ============================================= -->
 
-            <tbody>
+        <div class="mb-3">
 
-                <tr>
+            <div class="text-muted small">
 
-                    <th width="180">
+                Execute Job
 
-                        Execute ID
+            </div>
 
-                    </th>
+            <div class="fs-5 fw-bold">
 
-                    <td>
+                Job #{{ job.pk }}
 
-                        #{{ job.id }}
+            </div>
 
-                    </td>
+        </div>
 
-                </tr>
 
-                <tr>
+        <!-- ============================================= -->
+        <!-- Test Plan -->
+        <!-- ============================================= -->
 
-                    <th>
+        <div class="mb-3">
 
-                        Test Plan
+            <div class="text-muted small">
 
-                    </th>
+                Test Plan
 
-                    <td>
+            </div>
 
-                        {{ job.testplan }}
+            <div class="fw-semibold">
 
-                    </td>
+                {{ job.testplan }}
 
-                </tr>
+            </div>
 
-                <tr>
+        </div>
 
-                    <th>
 
-                        Status
+        <!-- ============================================= -->
+        <!-- Model -->
+        <!-- ============================================= -->
 
-                    </th>
+        {% if job.testplan.model %}
 
-                    <td>
+            <div class="mb-3">
 
-                        {% if job.status == "RUNNING" %}
+                <div class="text-muted small">
 
-                            <span class="badge bg-success">
+                    JBOD Model
 
-                                <i class="fa-solid fa-spinner fa-spin me-1"></i>
+                </div>
 
-                                Running
+                <div class="fw-semibold">
 
-                            </span>
+                    {{ job.testplan.model }}
 
-                        {% elif job.status == "PASS" %}
+                </div>
 
-                            <span class="badge bg-primary">
+            </div>
 
-                                <i class="fa-solid fa-circle-check me-1"></i>
+        {% endif %}
 
-                                Pass
 
-                            </span>
+        <!-- ============================================= -->
+        <!-- Firmware -->
+        <!-- ============================================= -->
 
-                        {% elif job.status == "FAIL" %}
+        {% if job.testplan.firmware %}
 
-                            <span class="badge bg-danger">
+            <div class="mb-3">
 
-                                <i class="fa-solid fa-circle-xmark me-1"></i>
+                <div class="text-muted small">
 
-                                Fail
+                    Firmware
 
-                            </span>
+                </div>
 
-                        {% elif job.status == "STOP" %}
+                <div class="fw-semibold">
 
-                            <span class="badge bg-dark">
+                    {{ job.testplan.firmware }}
 
-                                <i class="fa-solid fa-stop me-1"></i>
+                </div>
 
-                                Stop
+            </div>
 
-                            </span>
+        {% endif %}
 
-                        {% else %}
 
-                            <span class="badge bg-secondary">
+        <!-- ============================================= -->
+        <!-- Status -->
+        <!-- ============================================= -->
 
-                                <i class="fa-solid fa-clock me-1"></i>
+        <div>
 
-                                Pending
+            <div class="text-muted small">
 
-                            </span>
+                Status
 
-                        {% endif %}
+            </div>
 
-                    </td>
 
-                </tr>
+            {% if job.status == "PASS" %}
 
-                <tr>
+                <span class="badge bg-success">
 
-                    <th>
+                    PASS
 
-                        Progress
+                </span>
 
-                    </th>
 
-                    <td>
+            {% elif job.status == "FAIL" %}
 
-                        {{ job.progress }}%
+                <span class="badge bg-danger">
 
-                    </td>
+                    FAIL
 
-                </tr>
+                </span>
 
-                <tr>
 
-                    <th>
+            {% elif job.status == "RUNNING" %}
 
-                        Created Time
+                <span class="badge bg-primary">
 
-                    </th>
+                    RUNNING
 
-                    <td>
+                </span>
 
-                        {{ job.created_at|date:"Y-m-d H:i:s" }}
 
-                    </td>
+            {% elif job.status == "STOP" %}
 
-                </tr>
+                <span class="badge bg-warning text-dark">
 
-            </tbody>
+                    STOP
 
-        </table>
+                </span>
+
+
+            {% else %}
+
+                <span class="badge bg-secondary">
+
+                    PENDING
+
+                </span>
+
+            {% endif %}
+
+        </div>
 
     </div>
 

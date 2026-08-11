@@ -1,111 +1,220 @@
 {% extends "base.html" %}
 
+
 {% block title %}
-儀表板（Dashboard）
+JBOD Validation Platform - Dashboard
 {% endblock %}
+
 
 {% block content %}
 
-<!-- ========================================================= -->
-<!-- Page Header -->
-<!-- ========================================================= -->
-{% include "components/page_header.html" with
-    title="儀表板"
-    title_en="Dashboard"
-    subtitle="JBOD 驗證作業總覽"
-%}
+<!-- =========================================================
+     Dashboard Header
+     ========================================================= -->
 
-<!-- ========================================================= -->
-<!-- Dashboard Statistics -->
-<!-- ========================================================= -->
-<div class="row g-4 mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    {% include "components/stat_card.html" with
-        title="總機型數"
-        title_en="Models"
-        value=model_count
-        icon="fa-server"
-        color="primary"
-    %}
+    <div>
 
-    {% include "components/stat_card.html" with
-        title="韌體版本數"
-        title_en="Firmware"
-        value=firmware_count
-        icon="fa-microchip"
-        color="success"
-    %}
+        <h2 class="fw-bold mb-1">
 
-    {% include "components/stat_card.html" with
-        title="測試案例數"
-        title_en="Test Cases"
-        value=testcase_count
-        icon="fa-vial"
-        color="warning"
-    %}
+            <i class="fa-solid fa-gauge me-2"></i>
 
-    {% include "components/stat_card.html" with
-        title="執行中作業"
-        title_en="Running Jobs"
-        value=running_count
-        icon="fa-play"
-        color="danger"
-    %}
+            Dashboard
+
+        </h2>
+
+
+        <p class="text-muted mb-0">
+
+            JBOD Validation Platform Overview
+
+        </p>
+
+    </div>
 
 </div>
 
-<!-- ========================================================= -->
-<!-- Quick Actions -->
-<!-- ========================================================= -->
+
+<!-- =========================================================
+     Statistics
+     ========================================================= -->
+
+<div class="row g-4 mb-4">
+
+
+    <!-- =====================================================
+         Models
+         ===================================================== -->
+
+    <div class="col-xl-3 col-md-6">
+
+        {% include "components/stat_card.html" with
+            title="Models"
+            value=model_count
+            icon="fa-server"
+        %}
+
+    </div>
+
+
+    <!-- =====================================================
+         Firmware
+         ===================================================== -->
+
+    <div class="col-xl-3 col-md-6">
+
+        {% include "components/stat_card.html" with
+            title="Firmware"
+            value=firmware_count
+            icon="fa-microchip"
+        %}
+
+    </div>
+
+
+    <!-- =====================================================
+         Test Cases
+         ===================================================== -->
+
+    <div class="col-xl-3 col-md-6">
+
+        {% include "components/stat_card.html" with
+            title="Test Cases"
+            value=testcase_count
+            icon="fa-list-check"
+        %}
+
+    </div>
+
+
+    <!-- =====================================================
+         Running Jobs
+         ===================================================== -->
+
+    <div class="col-xl-3 col-md-6">
+
+        {% include "components/stat_card.html" with
+            title="Running Jobs"
+            value=running_count
+            icon="fa-play"
+        %}
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     Quick Actions
+     ========================================================= -->
+
 <div class="card mb-4">
 
     <div class="card-header">
 
-        <i class="fa-solid fa-bolt"></i>
+        <i class="fa-solid fa-bolt me-2"></i>
 
-        快速操作 (Quick Actions)
+        Quick Actions
 
     </div>
 
+
     <div class="card-body">
 
-        <a href="/model/" class="btn btn-primary me-2 mb-2">
 
-            <i class="fa-solid fa-plus"></i>
+        <!-- =================================================
+             Model
+             ================================================= -->
 
-            新增機型
+        <a
+            href="{% url 'model_add' %}"
+            class="btn btn-primary me-2 mb-2"
+        >
+
+            <i class="fa-solid fa-plus me-2"></i>
+
+            新增 Model
 
         </a>
 
-        <a href="/firmware/" class="btn btn-success me-2 mb-2">
 
-            <i class="fa-solid fa-microchip"></i>
+        <!-- =================================================
+             Firmware
+             ================================================= -->
 
-            韌體管理
+        <a
+            href="{% url 'firmware_add' %}"
+            class="btn btn-primary me-2 mb-2"
+        >
+
+            <i class="fa-solid fa-microchip me-2"></i>
+
+            新增 Firmware
 
         </a>
 
-        <a href="/testcase/" class="btn btn-warning me-2 mb-2">
 
-            <i class="fa-solid fa-list-check"></i>
+        <!-- =================================================
+             Test Case
+             ================================================= -->
+
+        <a
+            href="{% url 'testcase_list' %}"
+            class="btn btn-warning me-2 mb-2"
+        >
+
+            <i class="fa-solid fa-list-check me-2"></i>
 
             測試案例
 
         </a>
 
-        <a href="/testplan/" class="btn btn-info me-2 mb-2">
 
-            <i class="fa-solid fa-layer-group"></i>
+        <!-- =================================================
+             Test Plan
+             ================================================= -->
+
+        <a
+            href="{% url 'testplan_list' %}"
+            class="btn btn-info me-2 mb-2"
+        >
+
+            <i class="fa-solid fa-layer-group me-2"></i>
 
             測試計畫
 
         </a>
 
-        <a href="/executor/" class="btn btn-danger mb-2">
 
-            <i class="fa-solid fa-play"></i>
+        <!-- =================================================
+             Validation
+             ================================================= -->
 
-            執行作業
+        <a
+            href="{% url 'validation_list' %}"
+            class="btn btn-success me-2 mb-2"
+        >
+
+            <i class="fa-solid fa-clipboard-check me-2"></i>
+
+            Validation Center
+
+        </a>
+
+
+        <!-- =================================================
+             Execute
+             ================================================= -->
+
+        <a
+            href="{% url 'executor:index' %}"
+            class="btn btn-dark me-2 mb-2"
+        >
+
+            <i class="fa-solid fa-play me-2"></i>
+
+            Execute
 
         </a>
 
@@ -113,77 +222,166 @@
 
 </div>
 
-<!-- ========================================================= -->
-<!-- Dashboard Overview -->
-<!-- ========================================================= -->
-<div class="row">
 
-    <!-- Recent Execute Jobs -->
-    <div class="col-lg-8">
+<!-- =========================================================
+     Recent Jobs / Firmware
+     ========================================================= -->
+
+<div class="row g-4">
+
+
+    <!-- =====================================================
+         Recent Execute Jobs
+         ===================================================== -->
+
+    <div class="col-lg-7">
 
         <div class="card h-100">
 
             <div class="card-header">
 
-                <i class="fa-solid fa-clock-rotate-left"></i>
+                <i class="fa-solid fa-clock-rotate-left me-2"></i>
 
-                最近執行作業 (Recent Execute Jobs)
+                Recent Execute Jobs
 
             </div>
 
-            <div class="card-body">
 
-                <table class="table table-hover align-middle">
+            <div class="card-body p-0">
 
-                    <thead>
+                {% if recent_jobs %}
 
-                        <tr>
+                    <div class="table-responsive">
 
-                            <th>ID</th>
+                        <table class="table table-hover mb-0">
 
-                            <th>測試計畫</th>
+                            <thead>
 
-                            <th>狀態</th>
+                                <tr>
 
-                        </tr>
+                                    <th>
+                                        Job
+                                    </th>
 
-                    </thead>
+                                    <th>
+                                        Test Plan
+                                    </th>
 
-                    <tbody>
+                                    <th>
+                                        Status
+                                    </th>
 
-                    {% for job in recent_jobs %}
+                                    <th>
+                                        Progress
+                                    </th>
 
-                        <tr>
+                                    <th>
+                                        Action
+                                    </th>
 
-                            <td>#{{ job.id }}</td>
+                                </tr>
 
-                            <td>{{ job.testplan }}</td>
+                            </thead>
 
-                            <td>
 
-                                {% include "components/status_badge.html" with status=job.status %}
+                            <tbody>
 
-                            </td>
+                                {% for job in recent_jobs %}
 
-                        </tr>
+                                    <tr>
 
-                    {% empty %}
+                                        <td>
 
-                        <tr>
+                                            <strong>
+                                                {{ job }}
+                                            </strong>
 
-                            <td colspan="3" class="text-center text-muted">
+                                        </td>
 
-                                尚無執行作業
 
-                            </td>
+                                        <td>
 
-                        </tr>
+                                            {{ job.testplan.name }}
 
-                    {% endfor %}
+                                        </td>
 
-                    </tbody>
 
-                </table>
+                                        <td>
+
+                                            {% if job.status == "PASS" %}
+
+                                                <span class="badge bg-success">
+                                                    PASS
+                                                </span>
+
+                                            {% elif job.status == "FAIL" %}
+
+                                                <span class="badge bg-danger">
+                                                    FAIL
+                                                </span>
+
+                                            {% elif job.status == "RUNNING" %}
+
+                                                <span class="badge bg-primary">
+                                                    RUNNING
+                                                </span>
+
+                                            {% elif job.status == "STOP" %}
+
+                                                <span class="badge bg-secondary">
+                                                    STOP
+                                                </span>
+
+                                            {% else %}
+
+                                                <span class="badge bg-warning text-dark">
+                                                    PENDING
+                                                </span>
+
+                                            {% endif %}
+
+                                        </td>
+
+
+                                        <td>
+
+                                            {{ job.progress }}%
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <a
+                                                href="{% url 'executor:detail' job.pk %}"
+                                                class="btn btn-sm btn-outline-primary"
+                                            >
+
+                                                <i class="fa-solid fa-eye"></i>
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                {% else %}
+
+                    <div class="p-4 text-center text-muted">
+
+                        No execution jobs.
+
+                    </div>
+
+                {% endif %}
 
             </div>
 
@@ -191,54 +389,57 @@
 
     </div>
 
-    <!-- Latest Firmware -->
-    <div class="col-lg-4">
+
+    <!-- =====================================================
+         Recent Firmware
+         ===================================================== -->
+
+    <div class="col-lg-5">
 
         <div class="card h-100">
 
             <div class="card-header">
 
-                <i class="fa-solid fa-microchip"></i>
+                <i class="fa-solid fa-microchip me-2"></i>
 
-                最新韌體 (Latest Firmware)
+                Recent Firmware
 
             </div>
 
-            <div class="card-body">
 
-                <ul class="list-group list-group-flush">
+            <div class="card-body p-0">
 
-                {% for fw in recent_firmware %}
+                {% if recent_firmware %}
 
-                    <li class="list-group-item">
+                    <div class="list-group list-group-flush">
 
-                        <strong>{{ fw.firmware_type }}</strong>
+                        {% for fw in recent_firmware %}
 
-                        <br>
+                            <div class="list-group-item">
 
-                        版本 {{ fw.version }}
+                                <div class="d-flex justify-content-between">
 
-                        <br>
+                                    <strong>
+                                        {{ fw }}
+                                    </strong>
 
-                        <small class="text-muted">
+                                </div>
 
-                            {{ fw.release_date }}
+                            </div>
 
-                        </small>
+                        {% endfor %}
 
-                    </li>
+                    </div>
 
-                {% empty %}
+                {% else %}
 
-                    <li class="list-group-item text-center text-muted">
+                    <div class="p-4 text-center text-muted">
 
-                        尚無韌體資料
+                        No firmware records.
 
-                    </li>
+                    </div>
 
-                {% endfor %}
-
-                </ul>
+                {% endif %}
 
             </div>
 
@@ -247,5 +448,6 @@
     </div>
 
 </div>
+
 
 {% endblock %}

@@ -1,5 +1,9 @@
 <div class="card shadow-sm">
 
+    <!-- ================================================= -->
+    <!-- Header -->
+    <!-- ================================================= -->
+
     <div class="card-header">
 
         <strong>
@@ -13,6 +17,10 @@
     </div>
 
 
+    <!-- ================================================= -->
+    <!-- Body -->
+    <!-- ================================================= -->
+
     <div class="card-body p-0">
 
         {% if execution_logs %}
@@ -25,19 +33,19 @@
 
                         <tr>
 
-                            <th>
+                            <th width="180">
 
                                 Time
 
                             </th>
 
-                            <th>
+                            <th width="120">
 
                                 Level
 
                             </th>
 
-                            <th>
+                            <th width="180">
 
                                 Test Case
 
@@ -49,7 +57,7 @@
 
                             </th>
 
-                            <th>
+                            <th width="120">
 
                                 Duration
 
@@ -66,12 +74,20 @@
 
                             <tr>
 
-                                <td class="text-nowrap">
+                                <!-- ================================= -->
+                                <!-- Time -->
+                                <!-- ================================= -->
+
+                                <td>
 
                                     {{ log.created_at|date:"Y-m-d H:i:s" }}
 
                                 </td>
 
+
+                                <!-- ================================= -->
+                                <!-- Level -->
+                                <!-- ================================= -->
 
                                 <td>
 
@@ -83,6 +99,7 @@
 
                                         </span>
 
+
                                     {% elif log.level == "FAIL" %}
 
                                         <span class="badge bg-danger">
@@ -90,6 +107,7 @@
                                             FAIL
 
                                         </span>
+
 
                                     {% elif log.level == "ERROR" %}
 
@@ -99,6 +117,7 @@
 
                                         </span>
 
+
                                     {% elif log.level == "WARNING" %}
 
                                         <span class="badge bg-warning text-dark">
@@ -106,6 +125,7 @@
                                             WARNING
 
                                         </span>
+
 
                                     {% else %}
 
@@ -120,12 +140,24 @@
                                 </td>
 
 
-                                <td class="text-nowrap">
+                                <!-- ================================= -->
+                                <!-- Test Case -->
+                                <!-- ================================= -->
 
-                                    {{ log.testcase.case_id }}
+                                <td>
+
+                                    <span class="fw-semibold">
+
+                                        {{ log.testcase.case_id }}
+
+                                    </span>
 
                                 </td>
 
+
+                                <!-- ================================= -->
+                                <!-- Message -->
+                                <!-- ================================= -->
 
                                 <td>
 
@@ -134,7 +166,11 @@
                                 </td>
 
 
-                                <td class="text-nowrap">
+                                <!-- ================================= -->
+                                <!-- Duration -->
+                                <!-- ================================= -->
+
+                                <td>
 
                                     {% if log.duration != None %}
 
@@ -160,7 +196,7 @@
 
         {% else %}
 
-            <div class="alert alert-secondary m-3">
+            <div class="alert alert-secondary m-3 mb-0">
 
                 <i class="fa-solid fa-circle-info me-2"></i>
 

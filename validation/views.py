@@ -1,23 +1,50 @@
 """
 validation/views.py
+
+Validation Views
+驗證作業相關 View。
 """
 
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
-from django.shortcuts import redirect
-from django.shortcuts import render
+
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+    render,
+)
 
 from .forms import ValidationForm
 from .models import Validation
 from .services import ValidationService
 
 
+# =========================================================
+# Validation List
+# 驗證作業列表
+# =========================================================
+
 def validation_list(request):
     """
     Validation List
+
+    顯示所有 Validation 作業，
+    並提供 Validation ID 關鍵字搜尋。
     """
 
-    keyword = request.GET.get("q", "").strip()
+    # -----------------------------------------------------
+    # 取得搜尋關鍵字
+    # -----------------------------------------------------
+
+    keyword = (
+        request.GET
+        .get("q", "")
+        .strip()
+    )
+
+
+    # -----------------------------------------------------
+    # 建立 QuerySet
+    # -----------------------------------------------------
 
     queryset = (
         Validation.objects
@@ -27,11 +54,21 @@ def validation_list(request):
         )
     )
 
+
+    # -----------------------------------------------------
+    # 關鍵字搜尋
+    # -----------------------------------------------------
+
     if keyword:
 
         queryset = queryset.filter(
             validation_id__icontains=keyword
         )
+
+
+    # -----------------------------------------------------
+    # Render
+    # -----------------------------------------------------
 
     return render(
         request,
@@ -43,10 +80,19 @@ def validation_list(request):
     )
 
 
+# =========================================================
+# Validation Add
+# 新增 Validation
+# =========================================================
+
 def add_validation(request):
     """
-    Create Validation
+    建立新的 Validation 作業。
     """
+
+    # -----------------------------------------------------
+    # POST
+    # -----------------------------------------------------
 
     if request.method == "POST":
 
@@ -54,24 +100,41 @@ def add_validation(request):
             request.POST
         )
 
+
         if form.is_valid():
 
             ValidationService.create_validation(
                 form
             )
 
+
             messages.success(
                 request,
-                "Validation created successfully."
+                "Validation created successfully.",
             )
 
+
+            # -------------------------------------------------
+            # 回到 Validation List
+            # -------------------------------------------------
+
             return redirect(
-                "validation:index"
+                "validation_list"
             )
+
+
+    # -----------------------------------------------------
+    # GET
+    # -----------------------------------------------------
 
     else:
 
         form = ValidationForm()
+
+
+    # -----------------------------------------------------
+    # Render
+    # -----------------------------------------------------
 
     return render(
         request,
@@ -83,15 +146,29 @@ def add_validation(request):
     )
 
 
+# =========================================================
+# Validation Edit
+# 編輯 Validation
+# =========================================================
+
 def edit_validation(request, pk):
     """
-    Update Validation
+    更新指定 Validation。
     """
+
+    # -----------------------------------------------------
+    # 取得 Validation
+    # -----------------------------------------------------
 
     validation = get_object_or_404(
         Validation,
         pk=pk,
     )
+
+
+    # -----------------------------------------------------
+    # POST
+    # -----------------------------------------------------
 
     if request.method == "POST":
 
@@ -100,24 +177,41 @@ def edit_validation(request, pk):
             instance=validation,
         )
 
+
         if form.is_valid():
 
             form.save()
 
+
             messages.success(
                 request,
-                "Validation updated successfully."
+                "Validation updated successfully.",
             )
 
+
+            # -------------------------------------------------
+            # 回到 Validation List
+            # -------------------------------------------------
+
             return redirect(
-                "validation:index"
+                "validation_list"
             )
+
+
+    # -----------------------------------------------------
+    # GET
+    # -----------------------------------------------------
 
     else:
 
         form = ValidationForm(
             instance=validation,
         )
+
+
+    # -----------------------------------------------------
+    # Render
+    # -----------------------------------------------------
 
     return render(
         request,
@@ -129,10 +223,19 @@ def edit_validation(request, pk):
     )
 
 
+# =========================================================
+# Validation Detail
+# 查看 Validation 詳細資訊
+# =========================================================
+
 def detail_validation(request, pk):
     """
-    Validation Detail
+    顯示指定 Validation 的詳細資訊。
     """
+
+    # -----------------------------------------------------
+    # 取得 Validation
+    # -----------------------------------------------------
 
     validation = get_object_or_404(
         Validation.objects.select_related(
@@ -141,6 +244,11 @@ def detail_validation(request, pk):
         ),
         pk=pk,
     )
+
+
+    # -----------------------------------------------------
+    # Render
+    # -----------------------------------------------------
 
     return render(
         request,
@@ -151,28 +259,53 @@ def detail_validation(request, pk):
     )
 
 
+# =========================================================
+# Validation Delete
+# 刪除 Validation
+# =========================================================
+
 def delete_validation(request, pk):
     """
-    Delete Validation
+    刪除指定 Validation。
     """
+
+    # -----------------------------------------------------
+    # 取得 Validation
+    # -----------------------------------------------------
 
     validation = get_object_or_404(
         Validation,
         pk=pk,
     )
 
+
+    # -----------------------------------------------------
+    # POST：確認刪除
+    # -----------------------------------------------------
+
     if request.method == "POST":
 
         validation.delete()
 
+
         messages.success(
             request,
-            "Validation deleted."
+            "Validation deleted.",
         )
 
+
+        # -------------------------------------------------
+        # 回到 Validation List
+        # -------------------------------------------------
+
         return redirect(
-            "validation:index"
+            "validation_list"
         )
+
+
+    # -----------------------------------------------------
+    # GET：顯示確認頁
+    # -----------------------------------------------------
 
     return render(
         request,

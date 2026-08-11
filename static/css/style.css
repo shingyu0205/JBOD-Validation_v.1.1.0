@@ -221,3 +221,169 @@ footer{
     border:none;
     border-bottom:1px solid #eee;
 }
+
+
+/* =======================================================
+   Login Page
+   登入頁面
+   ======================================================= */
+
+.login-page {
+
+    min-height: 100vh;
+
+    background: #f5f6fa;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+}
+
+
+/* =======================================================
+   Login Card
+   ======================================================= */
+
+.login-card {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+
+    overflow: hidden;
+}
+
+
+/* =======================================================
+   Login Header
+   ======================================================= */
+
+.login-card-header {
+
+    background: #0d6efd;
+
+    color: #ffffff;
+
+    padding: 16px 20px;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+/* =======================================================
+   Login Body
+   ======================================================= */
+
+.login-card-body {
+
+    padding: 35px;
+}
+
+
+/* =======================================================
+   Login Icon
+   ======================================================= */
+
+.login-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 15px;
+
+    color: #212529;
+}
+
+
+/* =======================================================
+   Login Title
+   ======================================================= */
+
+.login-title {
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+
+/* =======================================================
+   Login Subtitle
+   ======================================================= */
+
+.login-subtitle {
+
+    color: #6c757d;
+
+    margin-bottom: 30px;
+}
+
+
+/* =======================================================
+   Login Button
+   ======================================================= */
+
+.login-button {
+
+    width: 100%;
+
+    padding: 11px;
+
+    font-weight: 600;
+
+    border-radius: 8px;
+}
+
+
+/* =======================================================
+   Login Footer
+   ======================================================= */
+
+.login-card-footer {
+
+    border-top: 1px solid #dee2e6;
+
+    padding: 12px;
+
+    text-align: center;
+
+    color: #6c757d;
+
+    font-size: 13px;
+}
+
+
+/* =======================================================
+   Disabled Sidebar Link
+   尚未開放的 Sidebar 選項
+   ======================================================= */
+
+.sidebar-link-disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    user-select: none;
+}
+
+
+/* =======================================================
+   Disable Hover Effect
+   Coming Soon 項目不顯示可點擊的 Hover 效果
+   ======================================================= */
+
+.sidebar-link-disabled:hover {
+    background: transparent;
+    color: white;
+}

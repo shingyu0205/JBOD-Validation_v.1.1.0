@@ -4,7 +4,7 @@
 
         <strong>
 
-            <i class="fa-solid fa-layer-group me-2"></i>
+            <i class="fa-solid fa-clipboard-list me-2"></i>
 
             Test Plan Information
 
@@ -12,79 +12,149 @@
 
     </div>
 
+
     <div class="card-body">
 
-        <table class="table table-borderless align-middle mb-0">
+        <div class="row">
 
-            <tbody>
+            <!-- ========================================= -->
+            <!-- Test Plan -->
+            <!-- ========================================= -->
 
-                <tr>
+            <div class="col-md-4 mb-3">
 
-                    <th width="220">
+                <div class="text-muted small">
 
-                        Test Plan
+                    Test Plan
 
-                    </th>
+                </div>
 
-                    <td>
+                <div class="fw-bold">
 
-                        {{ job.testplan.name }}
+                    {{ job.testplan }}
 
-                    </td>
+                </div>
 
-                </tr>
+            </div>
 
-                <tr>
 
-                    <th>
+            <!-- ========================================= -->
+            <!-- Model -->
+            <!-- ========================================= -->
 
-                        Model
+            <div class="col-md-4 mb-3">
 
-                    </th>
+                <div class="text-muted small">
 
-                    <td>
+                    JBOD Model
 
-                        {{ job.testplan.model }}
+                </div>
 
-                    </td>
+                <div class="fw-semibold">
 
-                </tr>
+                    {{ job.testplan.model|default:"-" }}
 
-                <tr>
+                </div>
 
-                    <th>
+            </div>
 
-                        Firmware
 
-                    </th>
+            <!-- ========================================= -->
+            <!-- Firmware -->
+            <!-- ========================================= -->
 
-                    <td>
+            <div class="col-md-4 mb-3">
 
-                        {{ job.testplan.firmware }}
+                <div class="text-muted small">
 
-                    </td>
+                    Firmware
 
-                </tr>
+                </div>
 
-                <tr>
+                <div class="fw-semibold">
 
-                    <th>
+                    {{ job.testplan.firmware|default:"-" }}
 
-                        Description
+                </div>
 
-                    </th>
+            </div>
 
-                    <td>
+        </div>
 
-                        {{ job.testplan.description|default:"-" }}
 
-                    </td>
+        <hr>
 
-                </tr>
 
-            </tbody>
+        <div class="row">
 
-        </table>
+            <div class="col-md-3">
+
+                <div class="text-muted small">
+
+                    Total Test Cases
+
+                </div>
+
+                <div class="fs-5 fw-bold">
+
+                    {{ total_testcases }}
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="text-muted small">
+
+                    PASS
+
+                </div>
+
+                <div class="fs-5 fw-bold text-success">
+
+                    {{ pass_testcases }}
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="text-muted small">
+
+                    FAIL
+
+                </div>
+
+                <div class="fs-5 fw-bold text-danger">
+
+                    {{ fail_testcases }}
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="text-muted small">
+
+                    Remaining
+
+                </div>
+
+                <div class="fs-5 fw-bold">
+
+                    {{ remaining_testcases }}
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 

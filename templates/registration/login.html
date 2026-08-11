@@ -1,21 +1,194 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
 
 {% block content %}
 
-<h2>Login</h2>
+<div class="login-card">
 
-<form method="post">
 
-{% csrf_token %}
+    <!-- =====================================================
+         Login Header
+         ===================================================== -->
 
-{{ form.as_p }}
+    <div class="login-card-header">
 
-<button class="btn btn-primary">
+        <i class="fa-solid fa-right-to-bracket me-2"></i>
 
-Login
+        JBOD Validation Platform
 
-</button>
+    </div>
 
-</form>
+
+    <!-- =====================================================
+         Login Body
+         ===================================================== -->
+
+    <div class="login-card-body">
+
+
+        <!-- Login Icon -->
+
+        <div class="text-center">
+
+            <div class="login-icon">
+
+                <i class="fa-solid fa-user-lock"></i>
+
+            </div>
+
+
+            <div class="login-title">
+
+                Login
+
+            </div>
+
+
+            <div class="login-subtitle">
+
+                使用您的帳號登入系統
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             Login Form
+             ================================================= -->
+
+        <form
+            method="post"
+            action="{% url 'login' %}"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- =============================================
+                 Username
+                 ============================================= -->
+
+            <div class="mb-3">
+
+                <label
+                    for="id_username"
+                    class="form-label fw-semibold"
+                >
+
+                    <i class="fa-solid fa-user me-2"></i>
+
+                    使用者名稱
+
+                </label>
+
+
+                <input
+                    type="text"
+                    name="username"
+                    id="id_username"
+                    class="form-control"
+                    value="{{ form.username.value|default:'' }}"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <!-- =============================================
+                 Password
+                 ============================================= -->
+
+            <div class="mb-4">
+
+                <label
+                    for="id_password"
+                    class="form-label fw-semibold"
+                >
+
+                    <i class="fa-solid fa-lock me-2"></i>
+
+                    密碼
+
+                </label>
+
+
+                <input
+                    type="password"
+                    name="password"
+                    id="id_password"
+                    class="form-control"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- =============================================
+                 Error Message
+                 ============================================= -->
+
+            {% if form.errors %}
+
+                <div class="alert alert-danger">
+
+                    <i class="fa-solid fa-circle-exclamation me-2"></i>
+
+                    使用者名稱或密碼錯誤。
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- =============================================
+                 Login Button
+                 ============================================= -->
+
+            <button
+                type="submit"
+                class="btn btn-primary login-button"
+            >
+
+                <i class="fa-solid fa-right-to-bracket me-2"></i>
+
+                Login
+
+            </button>
+
+
+            <!-- =============================================
+                 Redirect
+                 ============================================= -->
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ next }}"
+            >
+
+        </form>
+
+    </div>
+
+
+    <!-- =====================================================
+         Login Footer
+         ===================================================== -->
+
+    <div class="login-card-footer">
+
+        JBOD Validation Platform
+
+    </div>
+
+
+</div>
 
 {% endblock %}

@@ -1,6 +1,9 @@
 <nav class="sidebar bg-dark text-white">
 
-    <!-- Logo -->
+    <!-- =====================================================
+         Logo
+         ===================================================== -->
+
     <div class="sidebar-header">
 
         <h4>
@@ -9,104 +12,253 @@
         </h4>
 
         <small class="text-secondary">
-            驗證管理平台
+            Validation Platform
         </small>
 
     </div>
 
+
     <hr class="text-secondary">
 
-    <!-- Dashboard -->
+
+    <!-- =====================================================
+         Dashboard
+         ===================================================== -->
+
     <div class="menu-title">
-        總覽
+        Dashboard
     </div>
 
-    <a class="sidebar-link" href="{% url 'dashboard' %}">
+
+    <a
+        class="sidebar-link"
+        href="{% url 'dashboard' %}"
+    >
+
         <i class="fa-solid fa-gauge"></i>
-        儀表板
+
+        Dashboard
+
     </a>
 
-    <!-- Asset Management -->
+
+    <!-- =====================================================
+         Asset Management
+         資產管理
+         ===================================================== -->
+
     <div class="menu-title">
-        資產管理
+        Asset Management
     </div>
 
-    <a class="sidebar-link" href="{% url 'model_list' %}">
+
+    <!-- Model -->
+
+    <a
+        class="sidebar-link"
+        href="{% url 'model_list' %}"
+    >
+
         <i class="fa-solid fa-box"></i>
-        機型管理 (Models)
+
+        Models
+
     </a>
 
-    <a class="sidebar-link" href="{% url 'firmware_list' %}">
+
+    <!-- Firmware -->
+
+    <a
+        class="sidebar-link"
+        href="{% url 'firmware_list' %}"
+    >
+
         <i class="fa-solid fa-microchip"></i>
-        韌體管理 (Firmware)
+
+        Firmware
+
     </a>
 
-    <!-- Validation -->
+
+    <!-- =====================================================
+         Validation
+         驗證作業
+         ===================================================== -->
+
     <div class="menu-title">
-        驗證作業
+        Validation
     </div>
+
 
     <!-- Validation Center -->
-    <a class="sidebar-link" href="{% url 'validation:index' %}">
+
+    <a
+        class="sidebar-link"
+        href="{% url 'validation_list' %}"
+    >
+
         <i class="fa-solid fa-clipboard-check"></i>
-        驗證中心 (Validation Center)
+
+        Validation Center
+
     </a>
 
-    <!-- Test Cases -->
-    <a class="sidebar-link" href="{% url 'testcase:index' %}">
+
+    <!-- Test Case -->
+
+    <a
+        class="sidebar-link"
+        href="{% url 'testcase_list' %}"
+    >
+
         <i class="fa-solid fa-list-check"></i>
-        測試案例 (Test Cases)
+
+        Test Case
+
     </a>
 
-    <!-- Test Plans -->
-    <a class="sidebar-link" href="{% url 'testplan:index' %}">
+
+    <!-- Test Plan -->
+
+    <a
+        class="sidebar-link"
+        href="{% url 'testplan_list' %}"
+    >
+
         <i class="fa-solid fa-layer-group"></i>
-        測試計畫 (Test Plans)
+
+        Test Plan
+
     </a>
+
 
     <!-- Execute -->
-    <a class="sidebar-link" href="{% url 'executor:index' %}">
+
+    <a
+        class="sidebar-link"
+        href="{% url 'executor:index' %}"
+    >
+
         <i class="fa-solid fa-play"></i>
-        執行作業 (Execute)
+
+        Execute
+
     </a>
+
+
+    <!-- =====================================================
+         Report
+         報告與日誌
+         ===================================================== -->
+
+    <div class="menu-title">
+        Report
+    </div>
+
 
     <!-- Report -->
+
+    <!-- =====================================================
+     Report
+     報告與日誌
+     ===================================================== -->
+
+<div class="menu-title">
+    Report
+</div>
+
+
+<!-- =====================================================
+     Reports
+     暫未開放
+     ===================================================== -->
+
+<div class="sidebar-link sidebar-link-disabled">
+
+    <i class="fa-solid fa-file-lines"></i>
+
+    Reports
+
+    <span class="badge bg-warning text-dark ms-2">
+        Coming Soon
+    </span>
+
+</div>
+
+
+<!-- =====================================================
+     Logs
+     暫未開放
+     ===================================================== -->
+
+<div class="sidebar-link sidebar-link-disabled">
+
+    <i class="fa-solid fa-terminal"></i>
+
+    Logs
+
+    <span class="badge bg-warning text-dark ms-2">
+        Coming Soon
+    </span>
+
+</div>
+
+
+    <!-- =====================================================
+         System
+         系統管理
+         ===================================================== -->
+
     <div class="menu-title">
-        報告與日誌
+        System
     </div>
 
-    <a class="sidebar-link text-secondary" href="javascript:void(0);">
-        <i class="fa-solid fa-file-lines"></i>
-        報告 (Reports)
-
-        <span class="badge bg-warning text-dark ms-2">
-            Coming Soon
-        </span>
-    </a>
-
-    <!-- Logs -->
-    <a class="sidebar-link text-secondary" href="javascript:void(0);">
-        <i class="fa-solid fa-terminal"></i>
-        日誌 (Logs)
-
-        <span class="badge bg-warning text-dark ms-2">
-            Coming Soon
-        </span>
-    </a>
-
-    <!-- System -->
-    <div class="menu-title">
-        系統管理
-    </div>
 
     <div class="sidebar-bottom">
 
         <hr class="text-secondary">
 
-        <a class="sidebar-link" href="/admin/">
+
+        <!-- Administration -->
+
+        <a
+            class="sidebar-link"
+            href="/admin/"
+        >
+
             <i class="fa-solid fa-user-gear"></i>
-            管理後台 (Administration)
+
+            Administration
+
         </a>
+
+
+        <!-- Logout -->
+
+        {% if user.is_authenticated %}
+
+            <form
+                method="post"
+                action="{% url 'logout' %}"
+                class="m-0"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="sidebar-link btn btn-link text-start w-100 border-0"
+                >
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </button>
+
+            </form>
+
+        {% endif %}
 
     </div>
 
