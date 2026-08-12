@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -87,6 +88,9 @@ TEMPLATES = [
         'APP_DIRS': True,
 
         'OPTIONS': {
+            'libraries': {
+                'platform_i18n': 'jbod_validation.templatetags.platform_i18n',
+            },
             'context_processors': [
 
                 'django.template.context_processors.request',
@@ -147,6 +151,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # 使用繁體中文
 LANGUAGE_CODE = "zh-hant"
 
+# 支援繁體中文與英文；使用者選擇會儲存在 session。
+LANGUAGES = [
+    ("zh-hant", "繁體中文"),
+    ("en", "English"),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
 # 台灣時區
 TIME_ZONE = "Asia/Taipei"
 
@@ -181,4 +195,3 @@ LOGIN_REDIRECT_URL = "/"
 
 # 登出後回到 Login Page
 LOGOUT_REDIRECT_URL = "/login/"
-

@@ -1,3 +1,4 @@
+{% load i18n platform_i18n %}
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom">
 
     <div class="container-fluid">
@@ -10,7 +11,7 @@
             </h4>
 
             <small class="text-muted d-block">
-                企業級驗證管理系統
+                {% pt "企業級驗證管理系統" %}
             </small>
 
             <small class="text-primary fw-semibold">
@@ -21,6 +22,18 @@
 
         <!-- 右邊 -->
         <div class="d-flex align-items-center">
+
+            <form action="{% url 'set_language' %}" method="post" class="me-3">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                <select name="language" class="form-select form-select-sm" aria-label="Language" onchange="this.form.submit()">
+                    {% get_current_language as CURRENT_LANGUAGE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% for code, name in LANGUAGES %}
+                        <option value="{{ code }}" {% if code == CURRENT_LANGUAGE %}selected{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
 
             <!-- Notification -->
             <button class="btn btn-light position-relative me-3">
@@ -54,7 +67,7 @@
                     <li>
                         <a class="dropdown-item" href="/admin/">
                             <i class="fa-solid fa-user-gear me-2"></i>
-                            Django 管理後台
+                            {% pt "Django 管理後台" %}
                         </a>
                     </li>
 
@@ -76,7 +89,7 @@
 
                                 <i class="fa-solid fa-right-from-bracket me-2"></i>
 
-                                登出
+                                {% pt "登出" %}
 
                             </button>
 

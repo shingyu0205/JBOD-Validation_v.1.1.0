@@ -1,0 +1,81 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: JBOD Validation Platform\n"
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "企業級驗證管理系統"
+msgstr "Enterprise Validation Management System"
+
+msgid "Django 管理後台"
+msgstr "Django Administration"
+
+msgid "登出"
+msgstr "Sign out"
+
+msgid "驗證管理平台"
+msgstr "Validation Management Platform"
+
+msgid "總覽"
+msgstr "Overview"
+
+msgid "儀表板"
+msgstr "Dashboard"
+
+msgid "資產管理"
+msgstr "Asset Management"
+
+msgid "機型管理"
+msgstr "Model Management"
+
+msgid "韌體管理"
+msgstr "Firmware Management"
+
+msgid "驗證作業"
+msgstr "Validation"
+
+msgid "驗證中心"
+msgstr "Validation Center"
+
+msgid "測試案例"
+msgstr "Test Cases"
+
+msgid "測試計畫"
+msgstr "Test Plans"
+
+msgid "執行作業"
+msgstr "Execute Jobs"
+
+msgid "報告與日誌"
+msgstr "Reports & Logs"
+
+msgid "報告"
+msgstr "Reports"
+
+msgid "日誌"
+msgstr "Logs"
+
+msgid "即將推出"
+msgstr "Coming Soon"
+
+msgid "系統管理"
+msgstr "System"
+
+msgid "管理後台"
+msgstr "Administration"
+
+msgid "JBOD 驗證管理平台總覽"
+msgstr "JBOD Validation Platform Overview"
+
+msgid "機型數"
+msgstr "Models"
+
+msgid "韌體版本數"
+msgstr "Firmware"
+
+msgid "測試案例數"
+msgstr "Test Cases"
+
+msgid "執行中作業"
+msgstr "Running Jobs"
