@@ -1,10 +1,3 @@
-"""
-testplan/urls.py
-
-Test Plan URL Configuration
-測試計畫 URL 設定。
-"""
-
 from django.urls import path
 
 from .views import (
@@ -12,7 +5,15 @@ from .views import (
     TestPlanCreateView,
     TestPlanDetailView,
     TestPlanUpdateView,
+    TestPlanDeleteView,
 )
+
+
+# =========================================================
+# URL Namespace
+# =========================================================
+
+app_name = "testplan"
 
 
 # =========================================================
@@ -32,7 +33,6 @@ urlpatterns = [
         name="testplan_list",
     ),
 
-
     # =====================================================
     # Test Plan Add
     # 新增測試計畫
@@ -43,7 +43,6 @@ urlpatterns = [
         TestPlanCreateView.as_view(),
         name="testplan_add",
     ),
-
 
     # =====================================================
     # Test Plan Detail
@@ -56,7 +55,6 @@ urlpatterns = [
         name="testplan_detail",
     ),
 
-
     # =====================================================
     # Test Plan Edit
     # 編輯測試計畫
@@ -66,6 +64,12 @@ urlpatterns = [
         "<int:pk>/edit/",
         TestPlanUpdateView.as_view(),
         name="testplan_edit",
+    ),
+
+    path(
+        "<int:pk>/delete/",
+        TestPlanDeleteView.as_view(),
+        name="testplan_delete",
     ),
 
 ]

@@ -5,7 +5,7 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div><h2 class="mb-1">測試案例詳情 <span class="fs-5 text-muted fw-normal">(Test Case)</span></h2><p class="text-muted mb-0">{{ testcase.case_id }} · {{ testcase.name }}</p></div>
-    <div class="d-flex gap-2"><a href="{% url 'testcase:edit' testcase.pk %}" class="btn btn-primary"><i class="fa-solid fa-pen me-2"></i>編輯</a><a href="{% url 'testcase:index' %}" class="btn btn-outline-secondary">返回列表</a></div>
+    <div class="d-flex gap-2"><a href="{% url 'testcase:testcase_edit' testcase.pk %}" class="btn btn-primary"><i class="fa-solid fa-pen me-2"></i>編輯</a><a href="{% url 'testcase:testcase_list' %}" class="btn btn-outline-secondary">返回列表</a></div>
 </div>
 <div class="card"><div class="card-body p-4"><dl class="row mb-0">
     <dt class="col-sm-3 text-muted">測試案例編號</dt><dd class="col-sm-9 font-monospace">{{ testcase.case_id }}</dd>

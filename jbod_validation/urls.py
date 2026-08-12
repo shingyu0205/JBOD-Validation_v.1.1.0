@@ -2,22 +2,20 @@
 jbod_validation/urls.py
 
 JBOD Validation Platform
-Project URL Configuration
+Main URL Configuration
 """
 
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-
-from django.urls import (
-    include,
-    path,
-)
+from django.urls import include
+from django.urls import path
 
 
 urlpatterns = [
 
     # =========================================================
     # Django Administration
+    # Django 管理後台
     # =========================================================
 
     path(
@@ -28,9 +26,21 @@ urlpatterns = [
 
     # =========================================================
     # Authentication
-    # 登入 / 登出
+    # 使用者登入 / 登出
     # =========================================================
 
+    # Login
+    # 登入頁面
+    path(
+        "login/",
+        auth_views.LoginView.as_view(
+            template_name="user/login.html",
+        ),
+        name="login",
+    ),
+
+    # Logout
+    # 登出
     path(
         "logout/",
         auth_views.LogoutView.as_view(),
@@ -40,6 +50,7 @@ urlpatterns = [
 
     # =========================================================
     # Dashboard
+    # 儀表板
     # =========================================================
 
     path(
@@ -50,6 +61,7 @@ urlpatterns = [
 
     # =========================================================
     # Models
+    # 機型管理
     # =========================================================
 
     path(
@@ -60,6 +72,7 @@ urlpatterns = [
 
     # =========================================================
     # Firmware
+    # 韌體管理
     # =========================================================
 
     path(
@@ -69,7 +82,8 @@ urlpatterns = [
 
 
     # =========================================================
-    # Test Cases
+    # Test Case
+    # 測試案例
     # =========================================================
 
     path(
@@ -79,7 +93,8 @@ urlpatterns = [
 
 
     # =========================================================
-    # Test Plans
+    # Test Plan
+    # 測試計畫
     # =========================================================
 
     path(
@@ -90,6 +105,7 @@ urlpatterns = [
 
     # =========================================================
     # Validation
+    # 驗證中心
     # =========================================================
 
     path(
@@ -100,6 +116,7 @@ urlpatterns = [
 
     # =========================================================
     # Executor
+    # 執行驗證
     # =========================================================
 
     path(

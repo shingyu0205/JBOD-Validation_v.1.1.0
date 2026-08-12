@@ -92,11 +92,11 @@ JBOD Validation Platform
 | Firmware          |  ✅ **100%** | CRUD、搜尋、Filter、Component 化完成。                                                                     |
 | Test Case         |  ✅ **100%** | CRUD 已完成，UI 與 URL Routing 已統一。                                                                    |
 | Test Plan         |  ✅ **100%** | CRUD 已完成，可建立及管理測試計畫。                                                                              |
-| Validation        |  🟡 **80%** | Validation 流程已建立，但實際硬體驗證、完整 Log 收集與結果解析仍待整合。                                                      |
-| Execute           |  🟢 **90%** | Execute Job、PASS / FAIL / TIMEOUT、Progress、Current TestCase、Execution Log 與 Timeout Handling 已完成。 |
+| Validation        |  ✅ **100%** | Validation Center、CRUD、Routing 完成                                                      |
+| Execute           |   ✅ **100%** | Execute Job、PASS / FAIL / TIMEOUT、Progress、Current TestCase、Execution Log 與 Timeout Handling 已完成。 |
 | Report            |  🔴 **0%**  | Coming Soon / 尚未開始。                                                                               |
-| Logs              |  🔴 **0%**  | Coming Soon / 尚未開始。                                                                               |
-| Automation Engine | 🟡 **部分完成** | Python subprocess 執行、Timeout Handling、Process Tree Termination 已完成，後續將持續整合實際 JBOD 測試腳本。           |
+| Logs              |  🟡 **30%**  | Execute Log 已建立，獨立 Log Center 尚未完成始。                                                                               |
+| Automation Engine | 🟡 **40%** | 基礎 Execution Engine 已完成，硬體自動化尚未整合           |
 
 ---
 
@@ -397,10 +397,10 @@ This project follows Semantic Versioning (SemVer).
 
 本專案採用 Semantic Versioning（SemVer）。
 
-| Version | Description      | 中文          |
-| ------- | ---------------- | ----------- |
+| Version | Description      | 中文             |
+| ------- | ---------------- | ---------------  |
 | Major   | Breaking Changes | 架構重大變更      |
-| Minor   | New Features     | 新功能         |
+| Minor   | New Features     | 新功能            |
 | Patch   | Bug Fixes        | Bug 修正與小幅改善 |
 
 Example:
@@ -414,9 +414,47 @@ v1.2.0
 
 ---
 ## 📜 Release History / 版本歷程
+### v1.2.1 - 2026-08-12
+**Fixes / Bug Fixes**
+- Fixed Authentication Login URL routing
+- Fixed Login redirect with `next` parameter
+- Fixed Validation namespace routing
+- Fixed Test Case namespace routing
+- Fixed Test Plan namespace routing
+- Fixed Dashboard URL reverse errors
+- Fixed Validation Add page routing
+- Fixed Test Plan Add page routing
+- Fixed Test Case page template routing issue
+- Fixed Sidebar navigation links
+
+**Improved / UI Improvements**
+- Unified Django URL namespace architecture
+- Improved Authentication flow
+- Improved Dashboard navigation
+- Improved Validation Center navigation
+- Improved Test Case navigation
+- Improved Test Plan navigation
+- Unified Chinese / English UI naming
+- Improved Sidebar navigation structure
+- Disabled unavailable Reports and Logs navigation
+- Improved Dashboard UI consistency
+
+**Stability**
+- Verified Dashboard
+- Verified Login / Logout
+- Verified Models navigation
+- Verified Firmware navigation
+- Verified Test Case navigation
+- Verified Test Plan navigation
+- Verified Validation navigation
+- Verified Execute navigation
+- Verified Execute PASS test
+- Verified Execute TIMEOUT test
+
+
 ### v1.2.0 — 2026-08-11
 
-🚀 Execution Engine
+**🚀 Execution Engine**
 * Added Execution Engine process execution.
 * Added Test Case execution.
 * Added PASS / FAIL / TIMEOUT handling.
@@ -428,7 +466,7 @@ v1.2.0
 * Added execution progress tracking.
 * Added execution logs.
 
-🔧 Executor
+**🔧 Executor**
 * Improved Execute Job lifecycle.
 * Improved Execute Detail page.
 * Added execution status tracking.
@@ -437,12 +475,12 @@ v1.2.0
 * Added execution status API.
 * Improved Executor URL routing.
 
-🧪 Validation
+**🧪 Validation**
 * Improved Validation workflow.
 * Improved Test Case / Test Plan integration.
 * Improved execution workflow between Validation and Executor.
 
-🎨 UI
+**🎨 UI**
 * Improved Dashboard UI.
 * Improved Sidebar navigation.
 * Improved Execute UI.
@@ -452,7 +490,7 @@ v1.2.0
 * Improved URL navigation.
 * Improved UI consistency.
 
-🔗 Routing
+**🔗 Routing**
 * Standardized Test Case URL naming.
 * Standardized Test Plan URL naming.
 * Standardized Validation URL naming.
@@ -460,7 +498,7 @@ v1.2.0
 * Fixed URL namespace conflicts.
 * Fixed Dashboard navigation links.
 
-🚧 Planned Modules
+**🚧 Planned Modules**
 * Reports
 * Logs
 
@@ -533,15 +571,6 @@ Initial Release.
 
 ---
 ## 🗺 Roadmap / 開發規劃
-### v1.2.x
-* Improve Execution Engine
-* Real Test Script Integration
-* Execution Result Parsing
-* Advanced Timeout Handling
-* Enhanced Execution Logs
-* Test Case Result Visualization
-* 
----
 ### v1.3.0
 * Execute Logs
 * Timeline View
@@ -554,7 +583,7 @@ Initial Release.
 * PDF Export
 * Excel Export
 * Validation Report Generation
-* 
+
 ---
 ### v2.0.0
 
@@ -565,7 +594,7 @@ Hardware and automation integration:
 * StorCLI Integration
 * Iometer Integration
 * JBOD Hardware Automation
-* Automated Validation Workflow**
+* Automated Validation Workflow
 
 ---
 ## 🧪 Validation Test Examples / 驗證測試範例

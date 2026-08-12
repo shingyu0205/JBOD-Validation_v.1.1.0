@@ -19,17 +19,17 @@
             </h2>
 
             <p class="text-muted mb-0">
-                Create or edit a JBOD Validation Test Plan.
+                建立或編輯 JBOD 驗證測試計畫。
             </p>
 
         </div>
 
-        <a href="{% url 'testplan:index' %}"
+        <a href="{% url 'testplan:testplan_list' %}"
            class="btn btn-outline-secondary">
 
             <i class="fa-solid fa-arrow-left me-2"></i>
 
-            Back
+            返回列表
 
         </a>
 
@@ -46,7 +46,7 @@
 
                 <i class="fa-solid fa-circle-info me-2"></i>
 
-                Basic Information
+                基本資料
 
             </div>
 
@@ -58,7 +58,7 @@
 
                     <label class="form-label fw-bold">
 
-                        Test Plan Name
+                        測試計畫名稱
                         <span class="text-danger">*</span>
 
                     </label>
@@ -83,7 +83,7 @@
 
                             <label class="form-label fw-bold">
 
-                                JBOD Model
+                                JBOD 機型
                                 <span class="text-danger">*</span>
 
                             </label>
@@ -102,7 +102,7 @@
 
                             <label class="form-label fw-bold">
 
-                                Firmware Version
+                                韌體版本
                                 <span class="text-danger">*</span>
 
                             </label>
@@ -127,7 +127,7 @@
 
                 <i class="fa-solid fa-list-check me-2"></i>
 
-                Test Cases
+                測試案例
 
             </div>
 
@@ -183,7 +183,7 @@
 
                 <i class="fa-solid fa-file-lines me-2"></i>
 
-                Description
+                說明
 
             </div>
 
@@ -199,12 +199,12 @@
 
         <div class="d-flex justify-content-end gap-2">
 
-            <a href="{% url 'testplan:index' %}"
+            <a href="{% url 'testplan:testplan_list' %}"
                class="btn btn-outline-secondary">
 
                 <i class="fa-solid fa-xmark me-2"></i>
 
-                Cancel
+                取消
 
             </a>
 
@@ -214,7 +214,7 @@
 
                 <i class="fa-solid fa-floppy-disk me-2"></i>
 
-                Save Test Plan
+                儲存測試計畫
 
             </button>
 

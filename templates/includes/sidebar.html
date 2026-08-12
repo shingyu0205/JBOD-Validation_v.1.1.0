@@ -1,265 +1,371 @@
-<nav class="sidebar bg-dark text-white">
+<!-- =========================================================
+     JBOD Validation Platform
+     Sidebar Navigation
+     ========================================================= -->
+
+<aside class="sidebar">
 
     <!-- =====================================================
-         Logo
+         Sidebar Header
          ===================================================== -->
 
     <div class="sidebar-header">
 
-        <h4>
-            <i class="fa-solid fa-server me-2"></i>
-            JBOD Validation
-        </h4>
+        <div class="d-flex align-items-center">
+
+            <i class="fa-solid fa-server me-2 text-white"></i>
+
+            <div>
+
+                <div class="text-white fw-bold">
+                    JBOD
+                </div>
+
+                <div class="text-white fw-bold">
+                    Validation
+                </div>
+
+            </div>
+
+        </div>
 
         <small class="text-secondary">
-            Validation Platform
+            驗證管理平台
         </small>
 
     </div>
 
 
-    <hr class="text-secondary">
-
-
     <!-- =====================================================
-         Dashboard
+         Navigation
          ===================================================== -->
 
-    <div class="menu-title">
-        Dashboard
-    </div>
+    <nav class="sidebar-nav">
 
 
-    <a
-        class="sidebar-link"
-        href="{% url 'dashboard' %}"
-    >
+        <!-- =================================================
+             Overview
+             總覽
+             ================================================= -->
 
-        <i class="fa-solid fa-gauge"></i>
+        <div class="menu-title">
+            總覽
+        </div>
 
-        Dashboard
+        <a
+            href="{% url 'dashboard' %}"
+            class="sidebar-link"
+        >
 
-    </a>
+            <i class="fa-solid fa-gauge-high"></i>
+
+            <span>
+                儀表板
+            </span>
+
+        </a>
+
+
+        <!-- =================================================
+             Asset Management
+             資產管理
+             ================================================= -->
+
+        <div class="menu-title">
+            資產管理
+        </div>
+
+
+        <!-- Models -->
+
+        <a
+            href="{% url 'model_list' %}"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-folder"></i>
+
+            <span>
+                機型管理 (Models)
+            </span>
+
+        </a>
+
+
+        <!-- Firmware -->
+
+        <a
+            href="{% url 'firmware_list' %}"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-microchip"></i>
+
+            <span>
+                韌體管理 (Firmware)
+            </span>
+
+        </a>
+
+
+        <!-- =================================================
+             Validation
+             驗證作業
+             ================================================= -->
+
+        <div class="menu-title">
+            驗證作業
+        </div>
+
+
+        <!-- Validation Center -->
+
+        <a
+            href="{% url 'validation:validation_list' %}"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-clipboard-check"></i>
+
+            <span>
+                驗證中心 (Validation Center)
+            </span>
+
+        </a>
+
+
+        <!-- Test Case -->
+
+        <a
+            href="{% url 'testcase:testcase_list' %}"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-list-check"></i>
+
+            <span>
+                測試案例 (Test Cases)
+            </span>
+
+        </a>
+
+
+        <!-- Test Plan -->
+
+        <a
+            href="{% url 'testplan:testplan_list' %}"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            <span>
+                測試計畫 (Test Plans)
+            </span>
+
+        </a>
+
+
+        <!-- Execute -->
+
+        <a
+            href="{% url 'executor:index' %}"
+            class="sidebar-link"
+        >
+
+            <i class="fa-solid fa-play"></i>
+
+            <span>
+                執行作業 (Execute)
+            </span>
+
+        </a>
+
+
+        <!-- =================================================
+             Reports & Logs
+             報告與日誌
+             ================================================= -->
+
+        <div class="menu-title">
+            報告與日誌
+        </div>
+
+
+        <!-- Reports -->
+
+        <div class="sidebar-link sidebar-disabled">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+            <span>
+                報告 (Reports)
+            </span>
+
+            <span class="coming-soon-badge">
+                即將推出
+            </span>
+
+        </div>
+
+
+        <!-- Logs -->
+
+        <div class="sidebar-link sidebar-disabled">
+
+            <i class="fa-solid fa-terminal"></i>
+
+            <span>
+                日誌 (Logs)
+            </span>
+
+            <span class="coming-soon-badge">
+                即將推出
+            </span>
+
+        </div>
+
+
+    </nav>
 
 
     <!-- =====================================================
-         Asset Management
-         資產管理
-         ===================================================== -->
-
-    <div class="menu-title">
-        Asset Management
-    </div>
-
-
-    <!-- Model -->
-
-    <a
-        class="sidebar-link"
-        href="{% url 'model_list' %}"
-    >
-
-        <i class="fa-solid fa-box"></i>
-
-        Models
-
-    </a>
-
-
-    <!-- Firmware -->
-
-    <a
-        class="sidebar-link"
-        href="{% url 'firmware_list' %}"
-    >
-
-        <i class="fa-solid fa-microchip"></i>
-
-        Firmware
-
-    </a>
-
-
-    <!-- =====================================================
-         Validation
-         驗證作業
-         ===================================================== -->
-
-    <div class="menu-title">
-        Validation
-    </div>
-
-
-    <!-- Validation Center -->
-
-    <a
-        class="sidebar-link"
-        href="{% url 'validation_list' %}"
-    >
-
-        <i class="fa-solid fa-clipboard-check"></i>
-
-        Validation Center
-
-    </a>
-
-
-    <!-- Test Case -->
-
-    <a
-        class="sidebar-link"
-        href="{% url 'testcase_list' %}"
-    >
-
-        <i class="fa-solid fa-list-check"></i>
-
-        Test Case
-
-    </a>
-
-
-    <!-- Test Plan -->
-
-    <a
-        class="sidebar-link"
-        href="{% url 'testplan_list' %}"
-    >
-
-        <i class="fa-solid fa-layer-group"></i>
-
-        Test Plan
-
-    </a>
-
-
-    <!-- Execute -->
-
-    <a
-        class="sidebar-link"
-        href="{% url 'executor:index' %}"
-    >
-
-        <i class="fa-solid fa-play"></i>
-
-        Execute
-
-    </a>
-
-
-    <!-- =====================================================
-         Report
-         報告與日誌
-         ===================================================== -->
-
-    <div class="menu-title">
-        Report
-    </div>
-
-
-    <!-- Report -->
-
-    <!-- =====================================================
-     Report
-     報告與日誌
-     ===================================================== -->
-
-<div class="menu-title">
-    Report
-</div>
-
-
-<!-- =====================================================
-     Reports
-     暫未開放
-     ===================================================== -->
-
-<div class="sidebar-link sidebar-link-disabled">
-
-    <i class="fa-solid fa-file-lines"></i>
-
-    Reports
-
-    <span class="badge bg-warning text-dark ms-2">
-        Coming Soon
-    </span>
-
-</div>
-
-
-<!-- =====================================================
-     Logs
-     暫未開放
-     ===================================================== -->
-
-<div class="sidebar-link sidebar-link-disabled">
-
-    <i class="fa-solid fa-terminal"></i>
-
-    Logs
-
-    <span class="badge bg-warning text-dark ms-2">
-        Coming Soon
-    </span>
-
-</div>
-
-
-    <!-- =====================================================
-         System
+         Sidebar Bottom
          系統管理
          ===================================================== -->
 
-    <div class="menu-title">
-        System
-    </div>
-
-
     <div class="sidebar-bottom">
 
-        <hr class="text-secondary">
+        <div class="menu-title">
+            系統管理
+        </div>
 
 
         <!-- Administration -->
 
         <a
-            class="sidebar-link"
             href="/admin/"
+            class="sidebar-link"
+            target="_blank"
         >
 
-            <i class="fa-solid fa-user-gear"></i>
+            <i class="fa-solid fa-gear"></i>
 
-            Administration
+            <span>
+                管理後台
+            </span>
 
         </a>
 
 
         <!-- Logout -->
 
-        {% if user.is_authenticated %}
+        <form
+            method="post"
+            action="{% url 'logout' %}"
+            class="m-0"
+        >
 
-            <form
-                method="post"
-                action="{% url 'logout' %}"
-                class="m-0"
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="sidebar-link sidebar-button"
             >
 
-                {% csrf_token %}
+                <i class="fa-solid fa-right-from-bracket"></i>
 
-                <button
-                    type="submit"
-                    class="sidebar-link btn btn-link text-start w-100 border-0"
-                >
+                <span>
+                    登出
+                </span>
 
-                    <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
 
-                    Logout
-
-                </button>
-
-            </form>
-
-        {% endif %}
+        </form>
 
     </div>
 
-</nav>
+</aside>
+
+
+<!-- =========================================================
+     Sidebar Style
+     ========================================================= -->
+
+<style>
+
+    /*
+     * Sidebar disabled item
+     * 暫未開放的功能
+     */
+
+    .sidebar-disabled {
+
+        cursor: not-allowed;
+
+        opacity: 0.55;
+
+    }
+
+
+    /*
+     * Coming Soon Badge
+     */
+
+    .coming-soon-badge {
+
+        margin-left: auto;
+
+        padding: 3px 8px;
+
+        border-radius: 12px;
+
+        background: #ffc107;
+
+        color: #212529;
+
+        font-size: 10px;
+
+        font-weight: 700;
+
+        white-space: nowrap;
+
+    }
+
+
+    /*
+     * Logout Button
+     */
+
+    .sidebar-button {
+
+        width: 100%;
+
+        border: none;
+
+        background: transparent;
+
+        text-align: left;
+
+        font-family: inherit;
+
+        font-size: inherit;
+
+        cursor: pointer;
+
+    }
+
+
+    /*
+     * Logout Button Hover
+     */
+
+    .sidebar-button:hover {
+
+        background: #0d6efd;
+
+        color: white;
+
+    }
+
+</style>

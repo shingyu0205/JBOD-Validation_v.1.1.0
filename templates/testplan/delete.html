@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}刪除測試計畫（Test Plan）{% endblock %}
+{% block content %}
+<div class="mx-auto" style="max-width: 680px;"><div class="card border-danger"><div class="card-body p-4"><div class="d-flex align-items-center mb-3 text-danger"><i class="fa-solid fa-triangle-exclamation fa-2x me-3"></i><h2 class="h4 mb-0">確認刪除測試計畫</h2></div><p>你即將刪除 <strong>{{ plan.name }}</strong>。此操作無法復原。</p><form method="post" class="d-flex justify-content-end gap-2">{% csrf_token %}<a href="{% url 'testplan:testplan_detail' plan.pk %}" class="btn btn-outline-secondary">取消</a><button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>確認刪除</button></form></div></div></div>
+{% endblock %}

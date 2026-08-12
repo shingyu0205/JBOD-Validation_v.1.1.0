@@ -1,10 +1,4 @@
-"""
-testplan/views.py
-
-Test Plan Views
-測試計畫相關 View。
-"""
-
+from django.contrib import messages
 from django.urls import reverse_lazy
 
 from django.views.generic import (
@@ -12,6 +6,7 @@ from django.views.generic import (
     CreateView,
     DetailView,
     UpdateView,
+    DeleteView,
 )
 
 from .models import TestPlan
@@ -25,7 +20,7 @@ from .forms import TestPlanForm
 
 class TestPlanListView(ListView):
     """
-    顯示所有 Test Plan。
+    Test Plan 列表。
     """
 
     model = TestPlan
@@ -35,11 +30,12 @@ class TestPlanListView(ListView):
     context_object_name = "plans"
 
 
-    # =====================================================
-    # QuerySet
-    # =====================================================
-
     def get_queryset(self):
+        """
+        取得 Test Plan QuerySet。
+
+        支援名稱搜尋。
+        """
 
         keyword = (
             self.request.GET
@@ -47,27 +43,17 @@ class TestPlanListView(ListView):
             .strip()
         )
 
-
-        # -------------------------------------------------
-        # 關鍵字搜尋
-        # -------------------------------------------------
-
         if keyword:
 
             return TestPlan.objects.filter(
                 name__icontains=keyword
             )
 
-
-        # -------------------------------------------------
-        # 無搜尋條件
-        # -------------------------------------------------
-
         return TestPlan.objects.all()
 
 
 # =========================================================
-# Test Plan Add
+# Test Plan Create
 # 新增測試計畫
 # =========================================================
 
@@ -82,27 +68,23 @@ class TestPlanCreateView(CreateView):
 
     template_name = "testplan/form.html"
 
-
-    # -----------------------------------------------------
-    # 建立成功後回到 Test Plan List
-    # -----------------------------------------------------
-
     success_url = reverse_lazy(
-        "testplan_list"
+        "testplan:testplan_list"
     )
 
 
     def get_context_data(self, **kwargs):
+        """
+        建立頁面 Context。
+        """
 
         context = super().get_context_data(
             **kwargs
         )
 
-
         context["title"] = (
-            "Add Test Plan"
+            "新增測試計畫（Add Test Plan）"
         )
-
 
         return context
 
@@ -114,7 +96,7 @@ class TestPlanCreateView(CreateView):
 
 class TestPlanDetailView(DetailView):
     """
-    顯示單一 Test Plan 詳細資料。
+    顯示 Test Plan 詳細資料。
     """
 
     model = TestPlan
@@ -125,13 +107,13 @@ class TestPlanDetailView(DetailView):
 
 
 # =========================================================
-# Test Plan Edit
+# Test Plan Update
 # 編輯測試計畫
 # =========================================================
 
 class TestPlanUpdateView(UpdateView):
     """
-    編輯既有 Test Plan。
+    編輯 Test Plan。
     """
 
     model = TestPlan
@@ -141,14 +123,13 @@ class TestPlanUpdateView(UpdateView):
     template_name = "testplan/form.html"
 
 
-    # =====================================================
-    # Update Success URL
-    # =====================================================
-
     def get_success_url(self):
+        """
+        更新成功後回到 Test Plan Detail。
+        """
 
         return reverse_lazy(
-            "testplan_detail",
+            "testplan:testplan_detail",
             kwargs={
                 "pk": self.object.pk,
             },
@@ -156,15 +137,29 @@ class TestPlanUpdateView(UpdateView):
 
 
     def get_context_data(self, **kwargs):
+        """
+        建立頁面 Context。
+        """
 
         context = super().get_context_data(
             **kwargs
         )
 
-
         context["title"] = (
-            "Edit Test Plan"
+            "編輯測試計畫（Edit Test Plan）"
         )
 
-
         return context
+
+
+class TestPlanDeleteView(DeleteView):
+    """刪除測試計畫，先顯示確認頁以避免誤刪。"""
+
+    model = TestPlan
+    template_name = "testplan/delete.html"
+    context_object_name = "plan"
+    success_url = reverse_lazy("testplan:testplan_list")
+
+    def form_valid(self, form):
+        messages.success(self.request, "測試計畫已成功刪除。")
+        return super().form_valid(form)

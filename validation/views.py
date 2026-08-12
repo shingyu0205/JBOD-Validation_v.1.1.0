@@ -110,7 +110,7 @@ def add_validation(request):
 
             messages.success(
                 request,
-                "Validation created successfully.",
+                "驗證任務已成功建立。",
             )
 
 
@@ -119,7 +119,7 @@ def add_validation(request):
             # -------------------------------------------------
 
             return redirect(
-                "validation_list"
+                "validation:validation_list"
             )
 
 
@@ -141,7 +141,7 @@ def add_validation(request):
         "validation/form.html",
         {
             "form": form,
-            "title": "Create Validation",
+            "title": "新增驗證任務（Create Validation）",
         },
     )
 
@@ -185,7 +185,7 @@ def edit_validation(request, pk):
 
             messages.success(
                 request,
-                "Validation updated successfully.",
+                "驗證任務已成功更新。",
             )
 
 
@@ -194,7 +194,7 @@ def edit_validation(request, pk):
             # -------------------------------------------------
 
             return redirect(
-                "validation_list"
+                "validation:validation_list"
             )
 
 
@@ -218,7 +218,7 @@ def edit_validation(request, pk):
         "validation/form.html",
         {
             "form": form,
-            "title": "Edit Validation",
+            "title": "編輯驗證任務（Edit Validation）",
         },
     )
 
@@ -290,7 +290,7 @@ def delete_validation(request, pk):
 
         messages.success(
             request,
-            "Validation deleted.",
+                "驗證任務已成功刪除。",
         )
 
 
@@ -299,7 +299,7 @@ def delete_validation(request, pk):
         # -------------------------------------------------
 
         return redirect(
-            "validation_list"
+            "validation:validation_list"
         )
 
 
