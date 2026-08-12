@@ -414,6 +414,19 @@ v1.2.0
 
 ---
 ## 📜 Release History / 版本歷程
+### v1.2.2 (2026-08-12)
+**New Features**
+- Added Traditional Chinese / English language switcher
+- Added global language switching button
+- Support Traditional Chinese and English interfaces
+
+**Improved**
+- Improved multilingual UI consistency
+- Improved navigation interface
+- Improved overall user experience
+
+---
+
 ### v1.2.1 - 2026-08-12
 **Fixes / Bug Fixes**
 - Fixed Authentication Login URL routing
@@ -451,6 +464,7 @@ v1.2.0
 - Verified Execute PASS test
 - Verified Execute TIMEOUT test
 
+---
 
 ### v1.2.0 — 2026-08-11
 
