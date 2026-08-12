@@ -671,28 +671,28 @@ Current stable release:
 > v1.2.0
 
 **Available**
-✅ Dashboard
-✅ Model Management
-✅ Firmware Management
-✅ Test Case Management
-✅ Test Plan Management
-✅ Validation Center
-✅ Execute Validation
-✅ Execute Detail
-✅ Execution Timeout
-✅ Execution Progress
-✅ Current TestCase Tracking
-✅ Authentication
+* ✅ Dashboard
+* ✅ Model Management
+* ✅ Firmware Management
+* ✅ Test Case Management
+* ✅ Test Plan Management
+* ✅ Validation Center
+* ✅ Execute Validation
+* ✅ Execute Detail
+* ✅ Execution Timeout
+* ✅ Execution Progress
+* ✅ Current TestCase Tracking
+* ✅ Authentication
 
 **Planned**
-🚧 Report Center
-🚧 Log Center
-🚧 Hardware Automation
-🚧 SSH Integration
-🚧 IPMI Integration
-🚧 Smartctl Integration
-🚧 StorCLI Integration
-🚧 Iometer Integration
+* 🚧 Report Center
+* 🚧 Log Center
+* 🚧 Hardware Automation
+* 🚧 SSH Integration
+* 🚧 IPMI Integration
+* 🚧 Smartctl Integration
+* 🚧 StorCLI Integration
+* 🚧 Iometer Integration
 
 ---
 ## 👨‍💻 Author
