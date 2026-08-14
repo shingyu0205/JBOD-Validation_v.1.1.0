@@ -79,3 +79,68 @@ msgstr "Test Cases"
 
 msgid "執行中作業"
 msgstr "Running Jobs"
+
+# =========================================================
+# Authentication
+# 使用者登入 / 註冊
+# =========================================================
+
+msgid "歡迎回來"
+msgstr "Welcome Back"
+
+msgid "登入以繼續使用 JBOD 驗證管理平台"
+msgstr "Sign in to continue JBOD Validation Platform"
+
+msgid "使用者名稱"
+msgstr "Username"
+
+msgid "密碼"
+msgstr "Password"
+
+msgid "記住我"
+msgstr "Remember Me"
+
+msgid "忘記密碼？"
+msgstr "Forgot Password?"
+
+msgid "登入"
+msgstr "Sign In"
+
+msgid "還沒有帳號？"
+msgstr "Don't have an account?"
+
+msgid "建立新帳號"
+msgstr "Create New Account"
+
+msgid "建立帳號"
+msgstr "Create Account"
+
+msgid "建立您的 JBOD 驗證管理平台帳號"
+msgstr "Create your JBOD Validation Platform account"
+
+msgid "電子郵件"
+msgstr "Email"
+
+msgid "名字"
+msgstr "First Name"
+
+msgid "姓氏"
+msgstr "Last Name"
+
+msgid "確認密碼"
+msgstr "Confirm Password"
+
+msgid "已經有帳號？"
+msgstr "Already have an account?"
+
+msgid "或"
+msgstr "OR"
+
+msgid "帳號或密碼錯誤。"
+msgstr "Username or Password is incorrect."
+
+msgid "帳號建立成功。"
+msgstr "Account created successfully."
+
+msgid "登出成功。"
+msgstr "Logout successfully."

@@ -6,7 +6,6 @@ Main URL Configuration
 """
 
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
 from django.urls import include
 from django.urls import path
 from django.conf.urls.i18n import set_language
@@ -14,8 +13,17 @@ from django.conf.urls.i18n import set_language
 
 urlpatterns = [
 
-    # 全站語言切換（繁體中文／英文）
-    path("i18n/setlang/", set_language, name="set_language"),
+    # =========================================================
+    # Internationalization
+    # 全站語言切換
+    # =========================================================
+
+    path(
+        "i18n/setlang/",
+        set_language,
+        name="set_language",
+    ),
+
 
     # =========================================================
     # Django Administration
@@ -30,25 +38,21 @@ urlpatterns = [
 
     # =========================================================
     # Authentication
-    # 使用者登入 / 登出
+    # 使用者登入 / 註冊 / 登出
+    #
+    # Login:
+    # /login/
+    #
+    # Register:
+    # /register/
+    #
+    # Logout:
+    # /logout/
     # =========================================================
 
-    # Login
-    # 登入頁面
     path(
-        "login/",
-        auth_views.LoginView.as_view(
-            template_name="user/login.html",
-        ),
-        name="login",
-    ),
-
-    # Logout
-    # 登出
-    path(
-        "logout/",
-        auth_views.LogoutView.as_view(),
-        name="logout",
+        "",
+        include("user.urls"),
     ),
 
 

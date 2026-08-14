@@ -1,56 +1,162 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
-<html lang="zh-Hant">
+
+<html lang="{{ request.LANGUAGE_CODE }}">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
-
-        JBOD Validation Platform | Register
-
+        JBOD Validation Platform | {% trans "建立帳號" %}
     </title>
 
-    <!-- Bootstrap -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <!-- =====================================================
+         Bootstrap
+         ===================================================== -->
 
-    <!-- Font Awesome -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <!-- Design System -->
+    <!-- =====================================================
+         Font Awesome
+         ===================================================== -->
 
-    <link rel="stylesheet"
-          href="{% static 'css/variables.css' %}">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
 
-    <link rel="stylesheet"
-          href="{% static 'css/common.css' %}">
 
-    <!-- Login CSS -->
+    <!-- =====================================================
+         Design System
+         ===================================================== -->
 
-    <link rel="stylesheet"
-          href="{% static 'css/login.css' %}">
+    <link
+        rel="stylesheet"
+        href="{% static 'css/variables.css' %}?v=20260814"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/common.css' %}?v=20260814"
+    >
+
+
+    <!-- =====================================================
+         Authentication CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/login.css' %}?v=20260814"
+    >
 
 </head>
 
+
 <body>
+
+
+<!-- =========================================================
+     Language Switcher
+     語言切換
+     ========================================================= -->
+
+<div class="language-switcher">
+
+    <form
+        action="{% url 'set_language' %}"
+        method="post"
+        class="d-flex align-items-center gap-1"
+    >
+
+        {% csrf_token %}
+
+        <!--
+            保留目前頁面網址。
+            切換語言後返回 Register 頁面。
+        -->
+
+        <input
+            type="hidden"
+            name="next"
+            value="{{ request.get_full_path }}"
+        >
+
+
+        <!-- =================================================
+             Traditional Chinese
+             繁體中文
+             ================================================= -->
+
+        <button
+            type="submit"
+            name="language"
+            value="zh-hant"
+            class="btn {% if request.LANGUAGE_CODE == 'zh-hant' %}active-language{% endif %}"
+        >
+
+            🇹🇼 中文
+
+        </button>
+
+
+        <span class="text-muted">
+            |
+        </span>
+
+
+        <!-- =================================================
+             English
+             英文
+             ================================================= -->
+
+        <button
+            type="submit"
+            name="language"
+            value="en"
+            class="btn {% if request.LANGUAGE_CODE == 'en' %}active-language{% endif %}"
+        >
+
+            🇺🇸 English
+
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- =========================================================
+     Main Login Wrapper
+     ========================================================= -->
 
 <div class="login-wrapper">
 
+
     <div class="login-container">
 
-        <!-- ============================== -->
-        <!-- Left Brand -->
-        <!-- ============================== -->
+
+        <!-- =================================================
+             Left Brand
+             左側品牌資訊
+             ================================================= -->
 
         <div class="brand-panel">
+
 
             <div class="brand-logo">
 
@@ -58,17 +164,20 @@
 
             </div>
 
+
             <h1 class="brand-title">
 
                 JVP
 
             </h1>
 
+
             <p class="brand-subtitle">
 
                 JBOD Validation Platform
 
             </p>
+
 
             <div class="brand-slogan">
 
@@ -78,7 +187,9 @@
 
             </div>
 
+
             <ul class="feature-list">
+
 
                 <li>
 
@@ -88,35 +199,40 @@
 
                 </li>
 
-                <li>
-
-                    <i class="fa-solid fa-circle-check"></i>
-
-                    Validation Execution
-
-                </li>
 
                 <li>
 
                     <i class="fa-solid fa-circle-check"></i>
 
-                    Report Management
+                    Validation Management
 
                 </li>
+
 
                 <li>
 
                     <i class="fa-solid fa-circle-check"></i>
 
-                    Enterprise Platform
+                    Execute Center
 
                 </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Report Center
+
+                </li>
+
 
             </ul>
 
+
             <div class="brand-footer">
 
-                Version 1.1.1
+                Version {{ VERSION|default:"1.2.2" }}
 
                 <br>
 
@@ -124,141 +240,287 @@
 
             </div>
 
+
         </div>
 
-        <!-- ============================== -->
-        <!-- Register -->
-        <!-- ============================== -->
+
+        <!-- =================================================
+             Register Panel
+             註冊區域
+             ================================================= -->
 
         <div class="login-panel">
 
+
             <div class="login-card">
+
+
+                <!-- =================================================
+                     Register Title
+                     ================================================= -->
 
                 <h2>
 
-                    Create Account
+                    {% trans "建立帳號" %}
 
                 </h2>
 
+
                 <p>
 
-                    Create your JBOD Validation Platform account
+                    {% trans "建立您的 JBOD 驗證管理平台帳號" %}
 
                 </p>
 
-                <form method="post">
+
+                <!-- =================================================
+                     Non-field Errors
+                     ================================================= -->
+
+                {% if form.non_field_errors %}
+
+                <div class="alert alert-danger">
+
+                    <i class="fa-solid fa-circle-exclamation me-2"></i>
+
+                    {{ form.non_field_errors }}
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- =================================================
+                     Register Form
+                     ================================================= -->
+
+                <form
+                    method="post"
+                    action="{% url 'register' %}"
+                >
 
                     {% csrf_token %}
 
-                    {% if form.non_field_errors %}
 
-                        <div class="alert alert-danger">
-
-                            {{ form.non_field_errors }}
-
-                        </div>
-
-                    {% endif %}
-
-                    <!-- Username -->
+                    <!-- =================================================
+                         Username
+                         使用者名稱
+                         ================================================= -->
 
                     <label class="form-label">
 
-                        Username
+                        {% trans "使用者名稱" %}
 
                     </label>
+
 
                     {{ form.username }}
 
-                    <!-- Email -->
+
+                    {% for error in form.username.errors %}
+
+                    <div class="text-danger small mt-1">
+
+                        {{ error }}
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- =================================================
+                         Email
+                         電子郵件
+                         ================================================= -->
 
                     <label class="form-label mt-3">
 
-                        Email
+                        {% trans "電子郵件" %}
 
                     </label>
+
 
                     {{ form.email }}
 
-                    <!-- First Name -->
+
+                    {% for error in form.email.errors %}
+
+                    <div class="text-danger small mt-1">
+
+                        {{ error }}
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- =================================================
+                         First Name
+                         名字
+                         ================================================= -->
 
                     <label class="form-label mt-3">
 
-                        First Name
+                        {% trans "名字" %}
 
                     </label>
+
 
                     {{ form.first_name }}
 
-                    <!-- Last Name -->
+
+                    {% for error in form.first_name.errors %}
+
+                    <div class="text-danger small mt-1">
+
+                        {{ error }}
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- =================================================
+                         Last Name
+                         姓氏
+                         ================================================= -->
 
                     <label class="form-label mt-3">
 
-                        Last Name
+                        {% trans "姓氏" %}
 
                     </label>
+
 
                     {{ form.last_name }}
 
-                    <!-- Password -->
+
+                    {% for error in form.last_name.errors %}
+
+                    <div class="text-danger small mt-1">
+
+                        {{ error }}
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- =================================================
+                         Password
+                         密碼
+                         ================================================= -->
 
                     <label class="form-label mt-3">
 
-                        Password
+                        {% trans "密碼" %}
 
                     </label>
+
 
                     {{ form.password1 }}
 
-                    <!-- Confirm Password -->
+
+                    {% for error in form.password1.errors %}
+
+                    <div class="text-danger small mt-1">
+
+                        {{ error }}
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- =================================================
+                         Confirm Password
+                         確認密碼
+                         ================================================= -->
 
                     <label class="form-label mt-3">
 
-                        Confirm Password
+                        {% trans "確認密碼" %}
 
                     </label>
 
+
                     {{ form.password2 }}
 
-                    <!-- Submit -->
+
+                    {% for error in form.password2.errors %}
+
+                    <div class="text-danger small mt-1">
+
+                        {{ error }}
+
+                    </div>
+
+                    {% endfor %}
+
+
+                    <!-- =================================================
+                         Create Account
+                         建立帳號
+                         ================================================= -->
 
                     <button
                         type="submit"
-                        class="btn btn-primary btn-login mt-4">
+                        class="btn btn-primary btn-login mt-4"
+                    >
 
                         <i class="fa-solid fa-user-plus me-2"></i>
 
-                        Create Account
+                        {% trans "建立帳號" %}
 
                     </button>
 
+
                 </form>
+
+
+                <!-- =================================================
+                     Divider
+                     ================================================= -->
 
                 <div class="login-divider">
 
                     <span>
 
-                        OR
+                        {% trans "或" %}
 
                     </span>
 
                 </div>
 
+
+                <!-- =================================================
+                     Back to Login
+                     返回登入
+                     ================================================= -->
+
                 <div class="register-link">
+
 
                     <p>
 
-                        Already have an account?
+                        {% trans "已經有帳號？" %}
 
                     </p>
 
+
                     <a href="{% url 'login' %}">
 
-                        Sign In
+                        {% trans "登入" %}
 
                     </a>
 
+
                 </div>
+
+
+                <!-- =================================================
+                     Version
+                     ================================================= -->
 
                 <div class="version">
 
@@ -270,21 +532,36 @@
 
                     <br>
 
-                    Version 1.1.1
+                    Version {{ VERSION|default:"1.2.2" }}
 
                 </div>
+
 
             </div>
 
         </div>
 
+
     </div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- =========================================================
+     Bootstrap JavaScript
+     ========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- =========================================================
+     Authentication JavaScript
+     ========================================================= -->
 
 <script src="{% static 'js/login.js' %}"></script>
+
 
 </body>
 
